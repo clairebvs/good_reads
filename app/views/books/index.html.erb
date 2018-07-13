@@ -1,3 +1,4 @@
 <% @books.each do |book| %>
   <%= book.title %>
-<% end %> 
+  <%= link_to "#{book.title}", book_path(book) %>
+<% end %>
