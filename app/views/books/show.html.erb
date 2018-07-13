@@ -1,1 +1,5 @@
 <%= @book.title %>
+<% @book.users.each do |user| %>
+  <%= user.name %>
+  <%= user.review %>
+<% end %> 
