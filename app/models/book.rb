@@ -7,6 +7,10 @@ class Book < ApplicationRecord
   end
 
   def highest_rating
-    users.order('rating ASC').first
+    reviews.order('rating DESC').first.rating
+  end
+
+  def lowest_rating
+    reviews.order('rating ASC').first.rating
   end
 end
