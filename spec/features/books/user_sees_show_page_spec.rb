@@ -75,7 +75,7 @@ describe 'a user visit the show page book' do
       visit book_path(book1)
 
       expect(page).to have_content("Highest rating : #{review1.rating}")
-      expect(page).to have_content("Highest rating name : #{user1.name}")
+      expect(page).to have_content("Highest rating name : Elena")
       expect(page).to have_content("Highest rating comment : #{review1.comment}")
     end
 
@@ -90,5 +90,20 @@ describe 'a user visit the show page book' do
       visit book_path(book1)
 
       expect(page).to have_content("Lowest rating : 2")
+    end
+
+    it 'user can see comment and user name that correspond to the lowest rating for a book' do
+      book1 = Book.create(title: "1, 2, 3")
+      book2 = Book.create(title: "Brooklyn Bridge")
+      user1 = User.create(name: "Elena")
+      user2 = User.create(name: "John")
+      review1 = Review.create(book_id: book1.id, user_id: user1.id, comment: "Great book", rating: 5)
+      review2 = Review.create(book_id: book1.id, user_id: user2.id, comment: "The beginning is long", rating: 2)
+
+      visit book_path(book1)
+
+      expect(page).to have_content("Lowest rating : #{review2.rating}")
+      expect(page).to have_content("Lowest rating name : John")
+      expect(page).to have_content("Lowest rating comment : #{review2.comment}")
     end
   end

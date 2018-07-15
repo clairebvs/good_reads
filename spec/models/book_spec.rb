@@ -28,9 +28,22 @@ describe Book, type: :model do
       review1 = Review.create(book_id: book1.id, user_id: user1.id, comment: "Great book", rating: 5)
       review2 = Review.create(book_id: book1.id, user_id: user2.id, comment: "The beginning is long", rating: 2)
 
-      expected_result = review1.rating
+      expected_result = review1
 
       expect(book1.highest_rating).to eq(expected_result)
+    end
+
+    it 'should find lowest rating per book' do
+      book1 = Book.create(title: "1, 2, 3")
+      book2 = Book.create(title: "Brooklyn Bridge")
+      user1 = User.create(name: "Elena")
+      user2 = User.create(name: "John")
+      review1 = Review.create(book_id: book1.id, user_id: user1.id, comment: "Great book", rating: 5)
+      review2 = Review.create(book_id: book1.id, user_id: user2.id, comment: "The beginning is long", rating: 2)
+
+      expected_result = review2
+
+      expect(book1.lowest_rating).to eq(expected_result)
     end
   end
 end
