@@ -1,5 +1,5 @@
-<%= @book.title %>
-<% @book.users.each do |user| %>
-  <%= user.name %>
-  <%= user.review %>
+Book title : <%= @book.title %>
+<% @book.reviews.each do |review| %>
+  <p>Name : <%= review.user.name %> </p>
+  <p>Comment : <%= review.comment %></p>
 <% end %>
