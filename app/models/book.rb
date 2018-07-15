@@ -5,4 +5,8 @@ class Book < ApplicationRecord
   def average_rating
     users.average(:rating)
   end
+
+  def highest_rating
+    users.order('rating ASC').first
+  end
 end

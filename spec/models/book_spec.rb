@@ -19,5 +19,18 @@ describe Book, type: :model do
 
       expect(book1.average_rating).to eq(expected_result)
     end
+
+    it 'should find highest rating per book' do
+      book1 = Book.create(title: "1, 2, 3")
+      book2 = Book.create(title: "Brooklyn Bridge")
+      user1 = User.create(name: "Elena")
+      user2 = User.create(name: "John")
+      review1 = Review.create(book_id: book1.id, user_id: user1.id, comment: "Great book", rating: 5)
+      review2 = Review.create(book_id: book1.id, user_id: user2.id, comment: "The beginning is long", rating: 2)
+
+      expected_result = review1.rating
+
+      expect(book1.highest_rating).to eq(expected_result)
+    end
   end
 end
