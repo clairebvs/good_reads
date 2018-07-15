@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Book, type: :model do
   describe 'relationships' do
-    it {should have_many(:user_books)}
-    it {should have_many(:users).through(:user_books)}
+    it {should have_many(:reviews)}
+    it {should have_many(:users).through(:reviews)}
   end
 
   describe 'instance method' do
